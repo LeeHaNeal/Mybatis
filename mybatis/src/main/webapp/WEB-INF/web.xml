@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
   <display-name>mybatis</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -28,5 +28,55 @@
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberEnrollFormServlet</display-name>
+    <servlet-name>MemberEnrollFormServlet</servlet-name>
+    <servlet-class>com.mybatis.member.controller.MemberEnrollFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberEnrollFormServlet</servlet-name>
+    <url-pattern>/enrollForm.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IdCheckServlet</display-name>
+    <servlet-name>IdCheckServlet</servlet-name>
+    <servlet-class>com.mybatis.member.controller.IdCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IdCheckServlet</servlet-name>
+    <url-pattern>/idCheck.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberInsertServlet</display-name>
+    <servlet-name>MemberInsertServlet</servlet-name>
+    <servlet-class>com.mybatis.member.controller.MemberInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberInsertServlet</servlet-name>
+    <url-pattern>/insert.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardListServlet</display-name>
+    <servlet-name>BoardListServlet</servlet-name>
+    <servlet-class>com.mybatis.board.controller.BoardListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardListServlet</servlet-name>
+    <url-pattern>/list.bo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardDetailServlet</display-name>
+    <servlet-name>BoardDetailServlet</servlet-name>
+    <servlet-class>com.mybatis.board.controller.BoardDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardDetailServlet</servlet-name>
+    <url-pattern>/detail.bo</url-pattern>
   </servlet-mapping>
 </web-app>

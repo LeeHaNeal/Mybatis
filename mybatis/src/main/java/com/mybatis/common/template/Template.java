@@ -11,21 +11,19 @@ public class Template {
 	public static SqlSession getSqlSession() {
 		SqlSession sqlSession = null;
 		
-		// SqlSession 생성하기 위해서는 sqlsessionFactory 필요
-		// sqlsessionFactory => sqlsessionFactoryBuilder
-		String resources = "/mybatis-config.xml";
-		try {
-		InputStream stream = Resources.getResourceAsStream(resources);
-		sqlSession = new SqlSessionFactoryBuilder().build(stream).openSession(false);
-		// openSession(flase) : 수동 commit => 기본값 , true => 자동커밋
+		// SqlSession생성하기 위해서는 SqlSessionFactory 필요
+		// SqlSessionFactory => SqlSessionFactoryBuilder
 		
-		} catch(IOException e) {
+		String resources = "/mybatis-config.xml";
+		
+		try {
+			InputStream stream = Resources.getResourceAsStream(resources);
+			sqlSession = new SqlSessionFactoryBuilder().build(stream).openSession(false);
+			// openSession(false) : 수동 commit => 기본값 ,  true=> 자동커밋
+			
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		 return sqlSession;
-		
+		return sqlSession;
 	}
-	
-	
-	
 }
