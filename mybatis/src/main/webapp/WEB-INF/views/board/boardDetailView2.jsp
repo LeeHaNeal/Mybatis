@@ -55,7 +55,6 @@
 						<th width="100">댓글작성</th>
 						<th width="400"><textarea cols="53" rows="3" id="content"></textarea></th>
 						<th width="100"><button id="replyInsert">등록</button></th>
-						<input type="hidden" name ="bno" value="${b.boardNo}">
 					</tr>
 				</c:when>
 				<c:otherwise>
