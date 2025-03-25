@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="boardMapper">
 	<resultMap type="Board" id="boardResultSet">
 		<result column="board_no" property="boardNo"/>
@@ -15,8 +15,8 @@
 	
 	<resultMap type="Reply" id="replyResultSet">
 		<result column="reply_no" property="replyNo"/>
-		<result column="reply_writer" property="replyWriter"/>
 		<result column="reply_content" property="replyContent"/>
+		<result column="reply_writer" property="replyWriter"/>
 		<result column="create_date" property="createDate"/>
 	</resultMap>
 	
@@ -26,25 +26,24 @@
 		 where status = 'Y' 
 	</select>
 	
-	<select id="selectList" resultMap="boardResultSet" >
+	<select id="selectList" resultMap="boardResultSet">
 		select *
 		  from board
 		 where status = 'Y'
-		 order by board_no desc 
+		 order by board_no desc
 	</select>
 	
 	<update id="increaseCount">
 		update board
 		   set count = count + 1
 		 where board_no = #{boardNo}
-		   and status = 'Y'  
+		   and status = 'Y' 
 	</update>
 	
 	<select id="selectBoard" resultMap="boardResultSet">
 		select *
 		  from board
 		 where board_no = #{boardNo} 
-	       and status = 'Y'
 	</select>
 	
 	<select id="selectReplyList" resultMap="replyResultSet">
@@ -52,24 +51,25 @@
 		  from reply
 		 where ref_bno = #{boardNo}
 		   and status = 'Y'
-		 order by reply_no desc 
+		 order by reply_no desc  
 	</select>
-	
-	<select id="selectSearchCount" resultType="int">
-    select count(*)
-    from board
-    where status = 'Y'
-    <if test="keyField == 'writer'">
-        and board_writer like '%' || #{keyWord} || '%'
-    </if>
-    <if test="keyField == 'title'">
-        and board_title like '%' || #{keyWord} || '%'
-    </if>
-    <if test="keyField == 'content'">
-        and board_content like '%' || #{keyWord} || '%'
-    </if>
-</select>
-	
+
+	<select id="selectSearchCount" resultType="_int">
+		select count(*)
+		  from board
+		 where status = 'Y'
+		 <if test="keyField == 'writer'">
+		 	and board_writer
+		 </if>
+		 <if test="keyField == 'title'">
+		 	and board_title
+		 </if>
+		 <if test="keyField == 'content'">
+		 	and board_content
+		 </if>
+		 like '%' || #{keyWord} || '%'    
+	</select>
+
 	<select id="selectSearchList" resultMap="boardResultSet">
 		select *
 		  from board
@@ -85,7 +85,11 @@
 		 		and board_content
 		 	</otherwise>
 		 </choose>
-		 like '%' || #{keyword} || '%'
-		 order by board_no desc
+		 like '%' || #{keyWord} || '%' 
+		 order by board_no desc   
 	</select>
+	
+	<insert id="replyInsert">
+		insert into reply values(seq_rno.nextval, #{replyContent}, #{refBoardNo}, #{replyWriter}, default, default)
+	</insert>
 </mapper>

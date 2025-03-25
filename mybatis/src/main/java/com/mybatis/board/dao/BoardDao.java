@@ -66,4 +66,8 @@ public class BoardDao {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rowBounds);
 	}
+
+	public int replyInsert(SqlSession sqlSession, Reply r) {
+		return sqlSession.insert("boardMapper.replyInsert", r);
+	}
 }
